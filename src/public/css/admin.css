@@ -1,0 +1,359 @@
+/* =========================
+    Base
+========================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    color: #3b332e;
+}
+
+/* =========================
+    Header
+========================= */
+.header {
+    background: #ffffff;
+    border-bottom: 1px solid #e7e0da;
+}
+
+.header__inner {
+    width: 900px;
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: #7a6b60;
+}
+
+.header__right {
+    margin-left: auto;
+}
+
+.logout__btn {
+    border: 1px solid #e0d6cd;
+    background: #ffffff;
+    color: #b4a59a;
+    padding: 6px 16px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.header__inner--auth {
+    position: relative;
+    justify-content: center;
+}
+
+.header__inner--auth form {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* =========================
+    Main
+========================= */
+.main {
+    width: 900px;
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
+    padding: 40px 0 60px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 28px;
+    margin: 0 0 30px;
+    color: #6f5f54;
+}
+
+/* =========================
+    Search
+========================= */
+.search__form {
+    display: grid;
+    grid-template-columns: 1.6fr 0.9fr 1.2fr 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.search__input,
+.search__select,
+.search__date {
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #e0d6cd;
+    background: #ffffff;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #3b332e;
+}
+
+.search__select {
+    appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #b4a59a 50%),
+        linear-gradient(135deg, #b4a59a 50%, transparent 50%);
+    background-position:
+        calc(100% - 16px) 16px,
+        calc(100% - 10px) 16px;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+/* =========================
+    Buttons
+========================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 18px;
+    font-size: 13px;
+    line-height: 1;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn--dark {
+    background: #7a675a;
+    color: #ffffff;
+}
+
+.btn--light {
+    background: #d2bba7;
+    color: #fff;
+    border: 1px solid #e0d6cd;
+}
+
+.btn--export {
+    background: #e7e0da;
+    color: #3b332e;
+    border-color: #e0d6cd;
+}
+
+/* =========================
+    Detail button
+========================= */
+.btn--detail,
+.detail-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 64px;
+    height: 32px;
+    padding: 0 14px;
+
+    border: 1px solid #d8cfc7;
+    background: transparent;
+    color: #7a6f66;
+
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+
+    white-space: nowrap;
+}
+
+.btn--detail:hover,
+.detail-button:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+    List / Table
+========================= */
+.list {
+    margin-top: 18px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.table__head th {
+    background: #7a675a;
+    color: #ffffff;
+    font-weight: normal;
+    padding: 14px 12px;
+    font-size: 14px;
+}
+
+.table__row td {
+    border-bottom: 1px solid #eee6df;
+    padding: 14px 12px;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.table__row:hover {
+    background: #f2ece7;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+    width: 140px;
+    white-space: nowrap;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    width: 90px;
+    white-space: nowrap;
+}
+
+/* =========================
+    Pagination
+========================= */
+.list__pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0 12px;
+    font-size: 13px;
+    color: #b4a59a;
+}
+
+.pagination {
+    margin: 0;
+    display: flex;
+    gap: 6px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.pagination li a,
+.pagination li span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 10px;
+    border: 1px solid #e0d6cd;
+    border-radius: 2px;
+    color: #b4a59a;
+    background: #ffffff;
+    text-decoration: none;
+}
+
+.pagination li.active span {
+    background: #7a675a;
+    color: #ffffff;
+    border-color: #7a675a;
+}
+
+.pagination li.disabled span {
+    color: #d2c7bd;
+}
+
+/* =========================
+    Modal
+========================= */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 1000;
+}
+
+.modal__panel {
+    position: relative;
+    width: 600px;
+    max-width: calc(100% - 80px);
+    margin: 70px auto;
+    background: #fff;
+    border: 1px solid #e5ddd6;
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 70px 55px 80px;
+}
+
+.modal__close {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 999px;
+    border: 1px solid #e0d6cd;
+    background: #ffffff;
+    color: #b4a59a;
+
+    cursor: pointer;
+    line-height: 1;
+    font-size: 18px;
+}
+
+.modal__close:hover {
+    opacity: 0.9;
+}
+
+.modal__list {
+    margin: 0;
+}
+
+.modal__row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: start;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.modal__term {
+    font-weight: normal;
+    color: #7a6f66;
+}
+
+.modal__desc {
+    color: #6f655d;
+    line-height: 1.7;
+}
+
+.modal__desc--multiline {
+    white-space: pre-wrap;
+}
+
+.modal__actions {
+    margin-top: 56px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal__delete {
+    min-width: 90px;
+    height: 34px;
+
+    border: none;
+    border-radius: 2px;
+
+    background: #c84b3d;
+    color: #ffffff;
+
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+
+.modal__delete:hover {
+    opacity: 0.92;
+}
