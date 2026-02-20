@@ -1,3 +1,6 @@
 
 # MySQL data (do not commit)
 docker/mysql/data/
+
+# Windows metadata
+*.Zone.Identifier
