@@ -17,9 +17,21 @@ docker compose up -d --build
 ```bash
 docker compose exec php composer install
 cp src/.env.example src/.env
-# 必要に応じて.envファイルの環境変数を変更
 docker compose exec php php artisan key:generate
+```
+※ 必要に応じて src/.env ファイルの環境変数を変更してください。
+※ 初回起動時は、src/.env のDB接続設定を docker-compose.yml の設定値と合わせてください。
+```bash
 docker compose exec php php artisan migrate --seed
+```
+
+## DB接続設定（docker-compose.ymlの設定値）
+以下の内容を src/.env に設定してください。
+```env
+DB_HOST=mysql
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
 ```
 
 ## 使用技術（実行環境）
