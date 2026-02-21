@@ -37,7 +37,7 @@ body.is-auth {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 22px;
+    font-size: 26px;
     letter-spacing: 0.5px;
     color: #7a6b60;
 }

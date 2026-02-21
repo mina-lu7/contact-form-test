@@ -92,7 +92,7 @@ class ContactController extends Controller
         }
 
         // 種類
-        if ($request->filled('categry_id')) {
+        if ($request->filled('category_id')) {
             $query->where('categry_id', $request->category_id);
         }
 
@@ -122,7 +122,7 @@ class ContactController extends Controller
                 $category = $c->category ? $c->category->content : '';
 
                 fputcsv($out, [
-                    $c->last_name . ' ' . $c->first_name,
+                    $c->first_name . ' ' . $c->last_name,
                     $gender,
                     $c->email,
                     '="' . $c->tel . '"',

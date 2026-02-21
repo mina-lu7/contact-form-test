@@ -28,10 +28,12 @@
             @endguest
 
             @auth
+            @if (request()->is('admin*'))
             <form method="POST" action="/logout">
                 @csrf
                 <button class="logout__btn">logout</button>
             </form>
+            @endif
             @endauth
         </div>
     </header>
