@@ -11,7 +11,7 @@
     @stack('css')
 </head>
 
-<body class="{{ request()->routeIs('login') || request()->routeIs('register') ? 'is-auth' : '' }}">
+<body class="{{ request()->is('login') || request()->is('register') ? 'is-auth' : '' }}">
     <header class="header">
         <div class="header__inner {{ auth()->check() ? 'header__inner--auth' : '' }}">
 
@@ -19,21 +19,19 @@
 
             @guest
             <div class="header__right">
-                @if (request()->routeIs('login'))
+                @if (request()->is('login'))
                 <a href="{{ route('register') }}" class="logout__btn">register</a>
-                @elseif (request()->routeIs('register'))
+                @elseif (request()->is('register'))
                 <a href="{{ route('login') }}" class="logout__btn">login</a>
                 @endif
             </div>
             @endguest
 
             @auth
-            @if (request()->is('admin*'))
             <form method="POST" action="/logout">
                 @csrf
                 <button class="logout__btn">logout</button>
             </form>
-            @endif
             @endauth
         </div>
     </header>

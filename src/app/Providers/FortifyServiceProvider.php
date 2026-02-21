@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -55,26 +56,26 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::authenticateUsing(function (Request $request) {
+            $validator = \Validator::make($request->all(), [
+                'email' => 'required|email',
+                'password' => 'required',
+            ], [
+                'email.required' => 'メールアドレスを入力してください',
+                'email.email' => 'メールアドレスはメール形式で入力してください',
+                'password.required' => 'パスワードを入力してください',
+            ]);
 
-            $request->validate(
-                [
-                    'email' => ['required', 'email'],
-                    'password' => ['required'],
-                ],
-                [
-                    'email.required' => 'メールアドレスを入力してください',
-                    'email.email' => 'メールアドレスはメール形式で入力してください',
-                    'password.required' => 'パスワードを入力してください',
-                ]
-            );
-
-            if (! Auth::guard(config('fortify.guard'))->attempt($request->only('email', 'password'))) {
-                throw ValidationException::withMessages([
-                    'password' => 'ログイン情報が登録されていません',
-                ]);
+            if ($validator->fails()) {
+                throw new \Illuminate\Validation\ValidationException($validator);
             }
 
-            return Auth::user();
+            $user = \App\Models\User::where('email', $request->email)->first();
+
+            if (!$user || !\Hash::check($request->password, $user->password)) {
+                throw new ValidationException(__('ログイン情報が登録されていません'));
+            }
+
+            return $user;
         });
     }
 }
